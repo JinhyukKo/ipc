@@ -17,10 +17,17 @@ char *ptr;
 /* open the shared memory object */
 fd = shm_open(name, O_RDONLY, 0666);
 /* memory map the shared memory object */
-ptr = (char *) mmap(0, SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+ptr = (char *) mmap(0, SIZE, PROT_READ, MAP_SHARED, fd, 0);
+
 /* read from the shared memory object */
-printf("%s",(char *)ptr);
+if (ptr == MAP_FAILED) {
+        perror("mmap failed");
+        exit(EXIT_FAILURE);
+    }
+printf("Consumer read: %s\n", ptr);
+
 /* remove the shared memory object */
+
 shm_unlink(name);
 return 0;
 }
