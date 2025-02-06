@@ -6,7 +6,7 @@
 
 struct {
     mach_msg_header_t header;
-    char some_text[20];
+    char some_text[100];
     char sender[20];
     mach_msg_trailer_t trailer;
 } message;
@@ -58,9 +58,8 @@ int main() {
         return 1;
     }
     printf("%s : ", message.sender);
-
-    message.some_text[9] = 0;
-    printf("%s \n", message.some_text);
+    message.some_text[99] = 0;
+    printf("%s", message.some_text);
     }
 }
 
