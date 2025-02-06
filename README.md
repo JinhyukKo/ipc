@@ -1,6 +1,7 @@
 # 1. Interprocess Communication (Low-level APIs)
-## 1. Version
-5.15.0-1079-azure
+## 1. Environment
+POSIX : Linux 5.15.0-1079-azure
+Mach-message-passing : MacOS
 
 ## 2. How to use
 
