@@ -3,6 +3,8 @@
 5.15.0-1079-azure
 
 ## 2. How to use
+
+### 2.1 POSIX Shared Memory
 ```bash
 gcc producer.c -o producer -lrt
 gcc consumer.c -o consumer -lrt
