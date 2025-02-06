@@ -1,9 +1,15 @@
-// File: receiver.c
 
 #include <stdio.h>
 
 #include <mach/mach.h>
 #include <servers/bootstrap.h>
+
+struct {
+    mach_msg_header_t header;
+    char some_text[20];
+    char sender[20];
+    mach_msg_trailer_t trailer;
+} message;
 
 int main() {
 
@@ -36,12 +42,7 @@ int main() {
 
 
     // Wait for a message.
-    struct {
-        mach_msg_header_t header;
-        char some_text[10];
-        int some_number;
-        mach_msg_trailer_t trailer;
-    } message;
+    while(1){
 
     kr = mach_msg(
         &message.header,  // Same as (mach_msg_header_t *) &message.
@@ -56,8 +57,10 @@ int main() {
         printf("mach_msg() failed with code 0x%x\n", kr);
         return 1;
     }
-    printf("Got a message\n");
+    printf("%s : ", message.sender);
 
     message.some_text[9] = 0;
-    printf("Text: %s, number: %d\n", message.some_text, message.some_number);
+    printf("%s \n", message.some_text);
+    }
 }
+
