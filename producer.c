@@ -32,5 +32,9 @@ sprintf(ptr,"%s",message_0);
 ptr += strlen(message_0);
 sprintf(ptr,"%s",message_1);
 ptr += strlen(message_1);
+printf("Producer wrote: %s %s\n", message_0, message_1);
+
 return 0;
 }
+~                                                                                                                              
+~             
